@@ -1,0 +1,19 @@
+
+> Ace-portfolio@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.79:3000
+- Environments: .env.local
+
+✓ Starting...
+✓ Ready in 24s
+○ Compiling /qa-preview ...
+ GET /qa-preview 200 in 105s (compile: 87s, render: 17.4s)
+✓ Finished writing to filesystem cache in 3.8min
+✓ Finished writing to filesystem cache in 30.0s
+ GET /qa-preview 200 in 3.6s (compile: 837ms, render: 2.8s)
+✓ Finished writing to filesystem cache in 2.7min
+✓ Finished filesystem cache database compaction in 30.9s
+[?25h
