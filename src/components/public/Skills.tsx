@@ -26,6 +26,7 @@ const professionalSkills = [
     { name: "Team Collaboration", description: "Working effectively in cross-functional groups" },
     { name: "Leadership", description: "Guiding teams and coordinating business activities" },
     { name: "Attention to Detail", description: "Ensuring precision in both code and design work" },
+    { name: "Sales & Digital Marketing", description: "Driving customer acquisition and brand growth — currently applied daily as Sales Manager & Marketing Officer at Carvu" },
 ];
 
 export default function Skills() {

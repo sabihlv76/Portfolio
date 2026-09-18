@@ -120,7 +120,7 @@ export default function Contact({
                                     <motion.a
                                         href="https://github.com/sabihlv76"
                                         target="_blank"
-                                        rel="noopener noreferrer"
+                                        rel="noopener noreferrer me"
                                         whileHover={{ scale: 1.1 }}
                                         className="w-10 h-10 bg-[var(--color-cream-dark)] flex items-center justify-center hover:bg-[var(--color-burgundy)] hover:text-white transition-all text-[var(--color-text-dark)]"
                                         title="GitHub"
@@ -130,7 +130,7 @@ export default function Contact({
                                     <motion.a
                                         href="https://www.linkedin.com/in/sabih-ace-bb56a5338/"
                                         target="_blank"
-                                        rel="noopener noreferrer"
+                                        rel="noopener noreferrer me"
                                         whileHover={{ scale: 1.1 }}
                                         className="w-10 h-10 bg-[var(--color-cream-dark)] flex items-center justify-center hover:bg-[var(--color-burgundy)] hover:text-white transition-all text-[var(--color-text-dark)]"
                                         title="LinkedIn"
@@ -191,6 +191,7 @@ export default function Contact({
                                         className="w-full px-4 py-3 border border-gray-200 focus:border-[var(--color-burgundy)] focus:outline-none transition-colors bg-white text-zinc-900 dark:bg-zinc-900 dark:border-zinc-800 dark:text-white"
                                     >
                                         <option value="">Select a topic</option>
+                                        <option value="book-a-call">Book a Call</option>
                                         <option value="web-development">Web Development</option>
                                         <option value="graphic-design">Graphic Design</option>
                                         <option value="video-editing">Video Editing</option>

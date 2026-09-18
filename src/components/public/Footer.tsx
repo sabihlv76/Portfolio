@@ -49,12 +49,13 @@ export default function Footer({
                         </h4>
                         <nav className="flex flex-col gap-3">
                             {[
-                                { label: "Home", href: "#home" },
-                                { label: "About", href: "#about" },
-                                { label: "Services", href: "#services" },
-                                { label: "Projects", href: "#projects" },
-                                { label: "Skills", href: "#skills" },
-                                { label: "Contact", href: "#contact" },
+                                { label: "Home", href: "/" },
+                                { label: "About", href: "/about" },
+                                { label: "Experience", href: "/#experience" },
+                                { label: "Services", href: "/#services" },
+                                { label: "Projects", href: "/projects" },
+                                { label: "Pricing", href: "/#pricing" },
+                                { label: "Contact", href: "/#contact" },
                             ].map((link) => (
                                 <Link
                                     key={link.label}
@@ -100,7 +101,7 @@ export default function Footer({
                             <motion.a
                                 href="https://github.com/sabihlv76"
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener noreferrer me"
                                 whileHover={{ scale: 1.1 }}
                                 className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[var(--color-burgundy)] transition-colors"
                                 title="GitHub"
@@ -110,7 +111,7 @@ export default function Footer({
                             <motion.a
                                 href="https://www.linkedin.com/in/sabih-ace-bb56a5338/"
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener noreferrer me"
                                 whileHover={{ scale: 1.1 }}
                                 className="w-10 h-10 bg-white/10 flex items-center justify-center hover:bg-[var(--color-burgundy)] transition-colors"
                                 title="LinkedIn"

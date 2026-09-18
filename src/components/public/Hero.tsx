@@ -19,7 +19,7 @@ const roles = [
     "Full-Stack Developer",
     "Graphic Designer",
     "Video Editor",
-    "Sales Manager",
+    "Sales & Marketing Manager",
 ];
 
 export default function Hero({
@@ -154,7 +154,7 @@ export default function Hero({
                             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[var(--color-burgundy)] to-[var(--color-brown)]" />
 
                             <div>
-                                <p className="text-xs text-[var(--color-text-muted)] uppercase tracking-[0.2em] mb-2">// whoami</p>
+                                <p className="text-xs text-[var(--color-text-muted)] uppercase tracking-[0.2em] mb-2">{"// whoami"}</p>
                                 <p className="text-2xl text-[var(--color-text-dark)]" style={{ fontFamily: "var(--font-serif)" }}>
                                     Sabih Iriho
                                 </p>

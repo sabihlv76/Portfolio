@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 interface AboutProps {
     introLine?: string;
@@ -15,14 +17,14 @@ export default function About({
     headline = "Software Developer, Creative Designer, and Digital Problem Solver",
     description = `I am a multidisciplinary digital professional who enjoys working at the intersection of technology, creativity, and business. My journey started with software development studies at Saint Kizito TSS, where I developed a strong interest in programming, problem-solving, and modern web technologies.
 
-Over the years, I expanded my skills beyond software engineering into sales management, graphic design, and digital media production. This combination allows me to not only build software but also understand branding, user engagement, communication, and business growth strategies.
+Over the years, I expanded my skills beyond software engineering into sales management, graphic design, and digital media production. This combination allows me to not only build software but also understand branding, user engagement, communication, and business growth strategies. I currently serve as a Sales Manager & Marketing Officer at Carvu, where I drive growth strategy and brand marketing alongside my development work.
 
 I am passionate about building high-performance applications, improving user experiences, and helping businesses establish strong digital identities. I also enjoy exploring Linux environments, open-source software, and continuously learning new tools and technologies.`,
     ctaText = "Hire Me",
 }: AboutProps) {
     const highlights = [
         { label: "Education", value: "Saint Kizito TSS", sub: "Software Development · 81%" },
-        { label: "Experience", value: "Higura · Spiderbit", sub: "Sales Manager & Developer" },
+        { label: "Experience", value: "Carvu · Higura", sub: "Sales, Marketing & Development" },
         { label: "Location", value: "Kigali, Rwanda", sub: "Available Remotely" },
         { label: "Languages", value: "EN · FR · SW · RW", sub: "Multilingual Professional" },
     ];
@@ -136,6 +138,14 @@ I am passionate about building high-performance applications, improving user exp
                                 My Skills
                             </motion.a>
                         </div>
+
+                        <Link
+                            href="/about"
+                            className="inline-flex items-center gap-1.5 text-xs tracking-widest uppercase text-[var(--color-text-muted)] hover:text-[var(--color-burgundy)] transition-colors"
+                        >
+                            Read My Full Story
+                            <ArrowUpRight size={14} />
+                        </Link>
                     </motion.div>
                 </div>
             </div>

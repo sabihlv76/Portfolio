@@ -1,18 +1,25 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, CalendarClock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const emptySubscribe = () => () => {};
+
+function useMounted() {
+    return useSyncExternalStore(
+        emptySubscribe,
+        () => true,
+        () => false
+    );
+}
+
 const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#services", label: "Services" },
-    { href: "#projects", label: "Projects" },
-    { href: "#skills", label: "Skills" },
-    { href: "#values", label: "Values" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#about", label: "About" },
+    { href: "/#projects", label: "Projects" },
+    { href: "/#pricing", label: "Pricing" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 import { useTheme } from "@/components/theme-provider";
@@ -25,18 +32,25 @@ interface NavbarProps {
 export default function Navbar({ ownerName = "Sabih Iriho" }: NavbarProps) {
     const [isOpen, setIsOpen] = useState(false);
     const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+    const mounted = useMounted();
+    const [scrolled, setScrolled] = useState(false);
+    const [hovered, setHovered] = useState<string | null>(null);
 
     useEffect(() => {
-        setMounted(true);
+        const onScroll = () => setScrolled(window.scrollY > 24);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
-
-
-
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-cream)]/95 backdrop-blur-sm border-b border-transparent dark:border-[var(--color-cream-dark)] transition-colors duration-300">
-            <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <header
+            className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-sm border-b transition-all duration-300 ${scrolled
+                    ? "bg-[var(--color-cream)]/95 border-[var(--color-cream-dark)] shadow-sm py-0"
+                    : "bg-[var(--color-cream)]/70 border-transparent py-1"
+                }`}
+        >
+            <nav className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
                 {/* Logo */}
                 <Link
                     href="/"
@@ -48,15 +62,25 @@ export default function Navbar({ ownerName = "Sabih Iriho" }: NavbarProps) {
 
                 {/* Desktop Navigation */}
                 <div className="hidden lg:flex items-center gap-8">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            className="text-xs tracking-widest uppercase text-[var(--color-text-dark)] hover:text-[var(--color-burgundy)] transition-colors"
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
+                    <div className="flex items-center gap-8" onMouseLeave={() => setHovered(null)}>
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onMouseEnter={() => setHovered(link.href)}
+                                className="relative py-2 text-xs tracking-widest uppercase text-[var(--color-text-dark)] hover:text-[var(--color-burgundy)] transition-colors"
+                            >
+                                {link.label}
+                                {hovered === link.href && (
+                                    <motion.span
+                                        layoutId="nav-hover-underline"
+                                        className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-[var(--color-burgundy)]"
+                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                    />
+                                )}
+                            </Link>
+                        ))}
+                    </div>
 
                     {/* Theme Toggle */}
                     <button
@@ -66,6 +90,18 @@ export default function Navbar({ ownerName = "Sabih Iriho" }: NavbarProps) {
                     >
                         {!mounted ? <Sun size={18} /> : theme === "dark" ? <Moon size={18} /> : theme === "pink" ? <Heart size={18} /> : <Sun size={18} />}
                     </button>
+
+                    {/* Book a Call CTA */}
+                    <motion.a
+                        href="/#contact"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="relative inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-burgundy)] text-white text-xs tracking-[0.15em] uppercase overflow-hidden group"
+                    >
+                        <span className="absolute inset-0 bg-gradient-to-r from-[var(--color-burgundy-light)] to-[var(--color-burgundy)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <CalendarClock size={14} className="relative" />
+                        <span className="relative">Book a Call</span>
+                    </motion.a>
                 </div>
 
                 {/* Mobile Controls */}
@@ -110,11 +146,12 @@ export default function Navbar({ ownerName = "Sabih Iriho" }: NavbarProps) {
                                 </Link>
                             ))}
                             <Link
-                                href="#contact"
+                                href="/#contact"
                                 onClick={() => setIsOpen(false)}
-                                className="mt-4 px-6 py-3 text-center text-xs tracking-widest uppercase bg-[var(--color-burgundy)] text-white"
+                                className="mt-4 inline-flex items-center justify-center gap-2 px-6 py-3 text-center text-xs tracking-widest uppercase bg-[var(--color-burgundy)] text-white"
                             >
-                                Hire Me
+                                <CalendarClock size={14} />
+                                Book a Call
                             </Link>
                         </div>
                     </motion.div>
